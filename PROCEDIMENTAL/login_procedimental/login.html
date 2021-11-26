@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="css/mystyle.css" />
+</head>
+<body>
+  <form action="validate.php" method="POST">
+    <div class="imgcontainer">
+      <img src="images/user.png" alt="User" class="user" width="200" height="200">
+    </div>
+
+    <div class="container">
+      <label><b>Nome Utilizador</b></label>
+      <input type="text" placeholder="Insira Nome Utilizador" name="username" required>
+
+      <label><b>Senha</b></label>
+      <input type="password" placeholder="Insira a senha" name="password" required>
+
+      <button type="submit" name="submit">Login</button>
+      <input type="checkbox" checked="checked"> Lembra-me
+    </div>
+  </form>
+
+</body>
+</html>

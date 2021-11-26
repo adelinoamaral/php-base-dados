@@ -1,0 +1,12 @@
+<div class="container" role="main">      
+	<div class="page-header">
+		<h1>Bem vindo</h1>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+
+		</div>
+	</div>
+</div> <!-- /container -->
+
