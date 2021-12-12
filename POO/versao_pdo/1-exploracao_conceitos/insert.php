@@ -14,6 +14,7 @@
         
         $stmt->execute();
         
+        // obtém o id do registo inserido
         $last_id = $link->lastInsertId();
         echo "Registo $last_id foi inserido com sucesso.";
     } catch(PDOException $e){

@@ -56,39 +56,37 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"])))
     <title>Ver Registo</title>
 </head>
 <body>
-        <?php 
-            if(isset($erro))
-            {
-                echo '<div>';
-                echo $erro;
-                echo '</div>';
-            }
-        ?>
+    <?php 
+        if(isset($erro))
+        {
+            echo '<div>';
+            echo $erro;
+            echo '</div>';
+        }
+    ?>
 
-        <div>
-            <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Apelido</th>
-                    <th scope="col">Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <!-- Pode utilizar as variáveis definidas acima ou o array associativo -->
-                    <td scope="row"><?php echo $row["id"]; ?></td>
-                    <td><?php echo $row["first_name"]; ?></td>
-                    <td><?php echo $row["last_name"]; ?></td>
-                    <td><?php echo $email; ?></td>
-                </tr>
-            </tbody>
-            </table>
+    <div>
+        <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Apelido</th>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!-- Pode utilizar as variáveis definidas acima ou o array associativo -->
+                <td scope="row"><?php echo $row["id"]; ?></td>
+                <td><?php echo $row["first_name"]; ?></td>
+                <td><?php echo $row["last_name"]; ?></td>
+                <td><?php echo $email; ?></td>
+            </tr>
+        </tbody>
+        </table>
 
-            <p><a href="index.php">Voltar</a></p>
-        </div>        
- 
-
+        <p><a href="index.php">Voltar</a></p>
+    </div>        
 </body>
 </html>

@@ -1,9 +1,12 @@
 <?php
     require_once "config.php";
     
+    // Esta versão de inserção de múltiplos registos tem um formato
+    // que fica protegida contra alguns ataques
     try{
         $sql = "INSERT INTO persons (first_name, last_name, email) 
                 VALUES (:first_name, :last_name, :email)";
+
         $stmt = $link->prepare($sql);
         
         $stmt->bindParam(':first_name', $first_name, PDO::PARAM_STR);

@@ -1,6 +1,7 @@
 <?php
     require_once "config.php";
    
+    // Versão de inserção de multiplos registos de forma pura e crua.
     try{
         $sql = "INSERT INTO persons (first_name, last_name, email) VALUES
             ('John', 'Rambo', 'johnrambo@mail.com'),
