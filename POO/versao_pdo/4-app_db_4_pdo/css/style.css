@@ -115,6 +115,7 @@ table .col{
 form input{
 	font-family: serif;
 	font-size: 1.2em;
+	border: 1px solid black;
 }
 
 /* footer */

@@ -1,8 +1,11 @@
 <?php
 	/**
-		Data: 06/10/2015
+	 * Date: 06/10/2015
+	 * Update: 
+	 * Author: Adelino Amaral
 	*/
 
+	// título da página
 	$page_title = 'Benvindo ao nosso site!';
 	// inclusão do cabeçalho
 	include ('includes/header.php');

@@ -75,8 +75,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create Record</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <title>Cria Registo</title>
     <style type="text/css">
         .wrapper{
             width: 500px;
@@ -86,35 +85,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
     <div class="wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="page-header">
-                        <h2>Cria Registo</h2>
-                    </div>
-                    <p>Please fill this form and submit to add employee record to the database.</p>
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                        <div class="form-group <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
-                            <label>Name</label>
-                            <input type="text" name="name" class="form-control" value="<?php echo $name; ?>">
-                            <span class="help-block"><?php echo $name_err;?></span>
-                        </div>
-                        <div class="form-group <?php echo (!empty($address_err)) ? 'has-error' : ''; ?>">
-                            <label>Address</label>
-                            <textarea name="address" class="form-control"><?php echo $address; ?></textarea>
-                            <span class="help-block"><?php echo $address_err;?></span>
-                        </div>
-                        <div class="form-group <?php echo (!empty($salary_err)) ? 'has-error' : ''; ?>">
-                            <label>Salary</label>
-                            <input type="text" name="salary" class="form-control" value="<?php echo $salary; ?>">
-                            <span class="help-block"><?php echo $salary_err;?></span>
-                        </div>
-                        <input type="submit" class="btn btn-primary" value="Submit">
-                        <a href="index.php" class="btn btn-default">Cancel</a>
-                    </form>
-                </div>
-            </div>        
+        <div class="page-header">
+            <h2>Cria Registo</h2>
         </div>
+        <p>Preencha os campos do formulário.</p>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <div>
+                <label>Nome:</label>
+                <input type="text" name="name" value="<?php echo $name; ?>">
+                <span><?php echo $name_err;?></span>
+            </div>
+            <div>
+                <label>Endereço:</label>
+                <textarea name="address"><?php echo $address; ?></textarea>
+                <span><?php echo $address_err;?></span>
+            </div>
+            <div>
+                <label>Salário:</label>
+                <input type="text" name="salary" value="<?php echo $salary; ?>">
+                <span><?php echo $salary_err;?></span>
+            </div>
+            <input type="submit" value="Submit">
+            <a href="index.php" >Cancelar</a>
+        </form>
+    </div>
     </div>
 </body>
 </html>

@@ -9,7 +9,7 @@
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'adelino');
 define('DB_PASSWORD', '123456');
-define('DB_NAME', 'company1');
+define('DB_NAME', 'company');
  
 /**
  * Cria uma ligação ao servidor
