@@ -44,8 +44,7 @@ Vagrantfile
 *.docx
 *.pptx
 *.pdf
-*.jpg
-*.png
+*.zip
 *.txt
 
 
