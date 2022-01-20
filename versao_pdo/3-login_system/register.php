@@ -1,6 +1,5 @@
 <?php
-// Include config file
-require_once "config.php";
+include 'functions.php';
  
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
@@ -8,7 +7,9 @@ $username_err = $password_err = $confirm_password_err = "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
+    
+    $link = pdo_connect_mysql();
+
     // Validate username
     if(empty(trim($_POST["username"]))){
         $username_err = "Insira o nome do utilizador.";
@@ -99,58 +100,37 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<?=template_header('Atualização', false)?>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Sign Up</title>
-    <style>
-    body {
-        font: 14px sans-serif;
-    }
+<div class="container">
+    <h2>Criar Conta</h2>
+    <p>Preencha o formulário para criar a conta.</p>
+    <!-- class="needs-validation" novalidate -->
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <div class="mb-2">
+            <labelfor="idnome">Nome de Utilizador</label>
+            <input type="text" name="username" value="<?php echo $username; ?>" id="idnome" >
+            <div><?php echo $username_err; ?></div>
+        </div>
 
-    .wrapper {
-        width: 460px;
-        padding: 20px;
-    }
-    .mb-2{
-        margin-bottom: 15px;
-    }
-    </style>
-</head>
+        <div class="mb-2">
+            <label for="idsenha">Senha</label>
+            <input type="password" name="password"
+                value="<?php echo $password; ?>" id="idsenha" required>
+            <div><?php echo $password_err; ?></div>
+        </div>
+        <div class="mb-2">
+            <label class="form-label" for="idsenhaconfirma">Confirme Senha</label>
+            <input type="password" name="confirm_password"
+                value="<?php echo $confirm_password; ?>" id="idsenhaconfirma" required>
+            <span><?php echo $confirm_password_err; ?></span>
+        </div>
+        <div class="mb-2">
+            <input type="submit" value="Registar">
+            <input type="reset" value="Limpar">
+        </div>
+        <p>Já tem uma conta? <a href="login.php">Faça Login Aqui</a>.</p>
+    </form>
+</div>
 
-<body>
-    <div class="wrapper">
-        <h2>Criar Conta</h2>
-        <p>Preencha o formulário para criar a conta.</p>
-        <!-- class="needs-validation" novalidate -->
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="mb-2">
-                <labelfor="idnome">Nome de Utilizador</label>
-                <input type="text" name="username" value="<?php echo $username; ?>" id="idnome" >
-                <div><?php echo $username_err; ?></div>
-            </div>
-
-            <div class="mb-2">
-                <label for="idsenha">Senha</label>
-                <input type="password" name="password"
-                    value="<?php echo $password; ?>" id="idsenha" required>
-                <div><?php echo $password_err; ?></div>
-            </div>
-            <div class="mb-2">
-                <label class="form-label" for="idsenhaconfirma">Confirme Senha</label>
-                <input type="password" name="confirm_password"
-                    value="<?php echo $confirm_password; ?>" id="idsenhaconfirma" required>
-                <span><?php echo $confirm_password_err; ?></span>
-            </div>
-            <div class="mb-2">
-                <input type="submit" value="Registar">
-                <input type="reset" value="Limpar">
-            </div>
-            <p>Já tem uma conta? <a href="login.php">Faça Login Aqui</a>.</p>
-        </form>
-    </div>
-</body>
-
-</html>
+<?=template_footer()?>

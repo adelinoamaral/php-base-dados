@@ -1,4 +1,8 @@
 <?php
+// Initialize the session
+session_start();
+include "functions.php";
+
 /*
     At the time of login we'll verify the given password with the 
     password hash stored in the database using the PHP password_verify() 
@@ -9,18 +13,15 @@
     password hashes. This is done by appending or prepending a random 
     string, called a salt, to the password before hashing.
 */
-
-// Initialize the session
-session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: dashboard.php");
     exit;
+}else {
+    $entrou = false;
 }
  
-// Include config file
-require_once "config.php";
  
 // Define variables and initialize with empty values
 $username = $password = "";
@@ -28,6 +29,8 @@ $username_err = $password_err = $login_err = "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+    $link = pdo_connect_mysql();
  
     // Check if username is empty
     if(empty(trim($_POST["username"]))){
@@ -91,26 +94,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             unset($stmt);
         }
     }
-    
     // Close connection
     unset($link);
 }
 ?>
- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <style>
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 360px; padding: 20px; }
-        .alert-danger{color: red; border: 1px solid red;}
-        .my-2{margin-top: 15px; margin-bottom: 15px;}
-    </style>
-</head>
-<body>
-    <div class="wrapper">
+
+
+<?=template_header('Entrar no Sistema', $entrou)?>
+
+    <div class="container">
         <h2>Login</h2>
 
         <?php 
@@ -136,5 +128,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <p>Não tem conta? <a href="register.php">Registe-se</a>.</p>
         </form>
     </div>
-</body>
-</html>
+
+<?=template_footer()?>

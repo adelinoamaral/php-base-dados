@@ -1,4 +1,6 @@
 <?php
+include "functions.php";
+
 // Initialize the session
 session_start();
  
@@ -19,23 +21,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     que não é executada pelo browser.
 */
 ?>
- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard</title>
-    <style>
-        body{ font: 14px sans-serif; text-align: center; }
-        .my-2{margin-top: 15px; margin-bottom: 15px;}
-    </style>
-</head>
-<body>
+
+<?=template_header('Dashboard', true)?>
+<div class="container">
     <h1 class="my-2">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. 
     Este é o dashboard.</h1>
     <p>
         <a href="reset-password.php">Reset à Senha</a>
-        <a href="logout.php" class="my-2">Sair</a>
     </p>
-</body>
-</html>
+</div>
+
+<?=template_footer()?>

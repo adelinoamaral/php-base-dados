@@ -1,16 +1,20 @@
 <?php
+include 'functions.php';
+
 // Initialize the session
 session_start();
  
+$entrou = false;
+
 // Check if the user is logged in, otherwise redirect to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
+}else {
+    $entrou = true;
 }
  
-// Include config file
-require_once "config.php";
- 
+
 // Define variables and initialize with empty values
 $new_password = $confirm_password = "";
 $new_password_err = $confirm_password_err = "";
@@ -26,6 +30,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $new_password = trim($_POST["new_password"]);
     }
+
     
     // Validate confirm password
     if(empty(trim($_POST["confirm_password"]))){
@@ -36,7 +41,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $confirm_password_err = "As senhas não coicidem.";
         }
     }
-        
+    
+    $link = pdo_connect_mysql();
+
     // Check input errors before updating the database
     if(empty($new_password_err) && empty($confirm_password_err)){
         // Prepare an update statement
@@ -71,19 +78,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
  
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Reset Password</title>
-    <style>
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 360px; padding: 20px; }
-        .my-2{margin-top: 15px; margin-bottom: 15px;}
-    </style>
-</head>
-<body>
-    <div class="wrapper">
+ <?=template_header('Atualização', $entrou)?>
+
+    <div class="container">
         <h2>Altere a Senha</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
             <div class="my-2">
@@ -102,5 +99,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
         </form>
     </div>    
-</body>
-</html>
+
+<?=template_footer()?>
