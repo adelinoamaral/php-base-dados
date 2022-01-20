@@ -1,4 +1,6 @@
 <?php
+include 'functions.php';
+
 // Process delete operation after confirmation
 if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Include config file
@@ -38,17 +40,10 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>View Record</title>
-</head>
-<body>
-    
-    <div>
-        <h1>Apagar Registo</h1>
-    </div>
+
+<?= template_header('Atualizar Item') ; ?>
+<div class="container">
+    <h1>Apagar Registo</h1>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div>
             <input type="hidden" name="id" value="<?php echo trim($_GET["id"]); ?>"/>
@@ -59,6 +54,6 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             </p>
         </div>
     </form>
-                
-</body>
-</html>
+</div>              
+
+<?=template_footer(); ?>

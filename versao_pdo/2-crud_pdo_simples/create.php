@@ -1,4 +1,5 @@
 <?php
+include 'functions.php';
 // Include config file
 require_once "config.php";
  
@@ -71,23 +72,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
  
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Cria Registo</title>
-    <style type="text/css">
-        .wrapper{
-            width: 500px;
-            margin: 0 auto;
-        }
-    </style>
-</head>
-<body>
-    <div class="wrapper">
-        <div class="page-header">
-            <h2>Cria Registo</h2>
-        </div>
+ <?= template_header('Atualizar Item') ; ?>
+    <div class="container">
+        <h2>Cria Registo</h2>
         <p>Preencha os campos do formulário.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div>
@@ -109,6 +96,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <a href="index.php" >Cancelar</a>
         </form>
     </div>
-    </div>
-</body>
-</html>
+
+<?=template_footer(); ?>

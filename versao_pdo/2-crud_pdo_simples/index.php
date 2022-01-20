@@ -1,20 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard</title>
-</head>
-<body>
-
+<?php
+include 'functions.php';
+template_header('Listagem') ;
+?>
+<div class="container">
+    
     <h3>Detalhes do Empregados</h3>
-    <p>Exemplificação do CRUD com empregados <a href="create.php">Adicionar Empregado</a></p>
+    <p>Exemplificação do CRUD com empregados <a href="create.php"><b>Adicionar Empregado</b></a></p>
         
     <?php
          require_once "config.php";
                 
         // lista todos os empregados
         $sql = "SELECT * FROM employees";
-        
         // Executa o comando SQL
         if ($result = $link->query($sql)) 
         {
@@ -43,9 +40,9 @@
                     echo "<td>" . $row['address'] . "</td>";
                     echo "<td>" . $row['salary'] . "€</td>";
                     echo "<td>";
-                    echo "<a href='read.php?id=" . $row['id'] . "' title='Ver Registo'>Ver Registo </a> &nbsp;&nbsp;| &nbsp;&nbsp;";
-                    echo "<a href='update.php?id=" . $row['id'] . "' title='Atualizar Registo'>Atualizar Registo </a> &nbsp;&nbsp;|&nbsp;&nbsp;";
-                    echo "<a href='delete.php?id=" . $row['id'] . "' title='Eliminar Registo'> Apagar Registo</a>";
+                    echo "<a href='read.php?id=" . $row['id'] . "' title='Ver Registo'> <i class='far fa-eye'></i> Ver Registo </a> &nbsp;&nbsp;| &nbsp;&nbsp;";
+                    echo "<a href='update.php?id=" . $row['id'] . "' title='Atualizar Registo'> <i class='far fa-edit'></i> Atualizar Registo </a> &nbsp;&nbsp;|&nbsp;&nbsp;";
+                    echo "<a href='delete.php?id=" . $row['id'] . "' title='Eliminar Registo'> <i class='far fa-trash-alt'></i> Apagar Registo</a>";
                     echo "</td>";
                     echo "</tr>";
                 }
@@ -74,6 +71,6 @@
         // Fecha a ligação ao servidor
         unset($link);
         ?>
-           
-</body>
-</html>
+</div>
+
+<?=template_footer(); ?>

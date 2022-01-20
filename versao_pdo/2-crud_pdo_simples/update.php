@@ -1,5 +1,5 @@
 <?php
-
+include 'functions.php';
 require_once "config.php";
  
 // Inicializa variáveis
@@ -114,14 +114,8 @@ if(isset($_POST["id"]) && !empty($_POST["id"]))
 }
 ?>
  
-<!DOCTYPE html>
-<html lang="pt-pt">
-<head>
-    <meta charset="UTF-8">
-    <title>Atualizar Registo</title>
-</head>
-<body>
-   
+ <?= template_header('Atualizar Item') ; ?>
+<div class="container">
     <h2>Atualize os seus dados</h2> <hr>
     <p>Altere os campos que pretende modificar.</p>
     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
@@ -146,6 +140,5 @@ if(isset($_POST["id"]) && !empty($_POST["id"]))
         <input type="submit" class="btn btn-primary" value="Gravar">
         <a href="index.php" class="btn btn-default">Cancelar</a>
     </form>
-           
-</body>
-</html>
+</div>
+<?=template_footer(); ?>

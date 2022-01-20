@@ -1,4 +1,5 @@
 <?php
+include 'functions.php';
 
 // Obtém o id pela URL
 if(isset($_GET["id"]) && !empty(trim($_GET["id"])))
@@ -49,13 +50,10 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"])))
     //exit();
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Ver Registo</title>
-</head>
-<body>
+
+
+<?= template_header('Ver Item') ; ?>
+<div class="container">
         <?php 
             if(isset($erro))
             {
@@ -87,7 +85,6 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"])))
 
             <p><a href="index.php">Voltar</a></p>
         </div>        
- 
+</div>
 
-</body>
-</html>
+<?=template_footer(); ?>
