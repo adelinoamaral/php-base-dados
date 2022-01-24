@@ -1,0 +1,7 @@
+<?php
+
+$con = new PDO('sqlite:movies.db');
+$st = $con->query("SELECT * FROM movie");
+$rows = $st->fetchAll(PDO::FETCH_ASSOC);
+VAR_DUMP($rows);
+
