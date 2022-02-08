@@ -1,5 +1,7 @@
 <?php
 include 'functions.php';
+
+$link = pdo_connect_mysql();
  
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
@@ -7,8 +9,6 @@ $username_err = $password_err = $confirm_password_err = "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    
-    $link = pdo_connect_mysql();
 
     // Validate username
     if(empty(trim($_POST["username"]))){
@@ -65,15 +65,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password, created_at) VALUES (:username, :password, NOW())";
+        $sql = "INSERT INTO users (username, password, created_at, idcategory) VALUES (:username, :password, NOW(), :idcategory)";
          
         if($stmt = $link->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
             $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
+            $stmt->bindParam(":idcategory", $param_category, PDO::PARAM_STR);
             
             // Set parameters
             $param_username = $username;
+            $param_category = $_POST['categories'];
             
             /*
                 Creates a password hash
@@ -96,8 +98,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Close connection
-    unset($pdo);
+    unset($link);
 }
+
 ?>
 
 <?=template_header('Atualização', false)?>
@@ -125,6 +128,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 value="<?php echo $confirm_password; ?>" id="idsenhaconfirma" required>
             <span><?php echo $confirm_password_err; ?></span>
         </div>
+
+        <div class="mb-2">
+            <label class="form-label" for="idCategory">Categoria</label>
+            <select name="categories">
+                <?php
+                    $sql = "SELECT * FROM categories";
+                    $result = $link->query($sql);
+                    if ($result){
+                        while ($row = $result->fetch()) {
+                            echo "<option value='" . $row['idcategory'] .  "'>" . $row['assignment'] . "</options>";
+                        }
+                    }
+                    unset($link);
+                ?>
+            </select>
+        </div>
+
         <div class="mb-2">
             <input type="submit" value="Registar">
             <input type="reset" value="Limpar">

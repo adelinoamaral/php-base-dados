@@ -24,6 +24,14 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
+# Others files
+*.exe
+*.dll
+*.def
+*.reg
+*.ini
+
+
 # Windows shortcuts
 *.lnk
 
@@ -52,6 +60,8 @@ Vagrantfile
 # Work directory
 #-------------------------
 documentacao/
+tools/
+desenvolvimento/
 
 #-------------------------
 # Composer

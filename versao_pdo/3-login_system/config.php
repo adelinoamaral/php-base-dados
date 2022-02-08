@@ -2,7 +2,7 @@
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'adelino');
 define('DB_PASSWORD', '123456');
-define('DB_NAME', 'demo');
+define('DB_NAME', 'company');
  
 /* Attempt to connect to MySQL database */
 try{
