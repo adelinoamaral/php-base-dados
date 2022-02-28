@@ -55,6 +55,7 @@ echo <<<EOT
 EOT;
 }
 
+
 /**
  * $password - input password
  * $lenght - length of the password
@@ -70,5 +71,25 @@ function verify_password($password, $lenght = 0) {
     }
 	//return $new_password;
 }
+
+
+/**
+ * Author: Adelino Amaral
+ * Date: 12-01-2020
+ * Description: generate a random name for the image
+ */
+function generate_name_image(){
+
+    // número máximo de caracteres da sequência
+    define('NUMBER_MAX', 8);
+
+    // conjunto de caracteres passíveis de serem usados
+    $string = "abcdefghijklmnopqrstuvxzywABCDEFGHIJKLMNOPQRSTUVXZYW0123456789!@#$%^&*()-";
+
+	// shuffle() - baralha um conjunto de caracteres aleatória
+    // substr(string, start, length)
+    return substr(str_shuffle($string), 0, NUMBER_MAX); 
+}
+
 
 ?>
